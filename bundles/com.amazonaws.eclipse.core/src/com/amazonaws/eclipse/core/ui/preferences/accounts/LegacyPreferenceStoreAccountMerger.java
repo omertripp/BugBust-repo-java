@@ -110,13 +110,10 @@ public class LegacyPreferenceStoreAccountMerger {
                                 "We cannot automatically merge the following accounts into your credentials file, " +
                                 "since the file already exists and is in invalid format. " +
                                 "Do you want to recreate the file using these account configurations?";
-                        try(MergeLegacyAccountsConfirmationDialog dialog = new MergeLegacyAccountsConfirmationDialog(
+                        MergeLegacyAccountsConfirmationDialog dialog = new MergeLegacyAccountsConfirmationDialog(
                                 null, MESSAGE, new String[] { "Yes", "No" }, 0,
-                                legacyAccounts.values(), null, null)) {
-                        	int result = dialog.open();
-			} catch (Exception exception) {
-				System.out.println(exception);
-			}
+                                legacyAccounts.values(), null, null);
+                        int result = dialog.open();
 
                         if (result == 0) {
                             AwsToolkitCore.getDefault().logInfo("Deleting the credentials file before dumping the legacy accounts.");
