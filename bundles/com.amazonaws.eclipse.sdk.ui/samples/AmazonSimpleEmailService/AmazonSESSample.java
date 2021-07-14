@@ -100,7 +100,9 @@ public class AmazonSESSample {
             // Send the email.
             client.sendEmail(request);
             System.out.println("Email sent!");
-
+        } catch (AmazonClientException ex) {
+            System.out.println("The email was not sent.");
+            System.out.println("Error message: " + ex.getMessage());
         } catch (Exception ex) {
             System.out.println("The email was not sent.");
             System.out.println("Error message: " + ex.getMessage());
